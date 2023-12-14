@@ -42,7 +42,7 @@ typedef struct instruction_s
 extern stack_t *stacktop;
 extern char *argument;
 
-int extractopcode(char *line, char *opcode);
+int extractopcode(char **line, char **opcode);
 void executeopcode(char *opcode);
 int numspace(char *start);
 

@@ -19,4 +19,6 @@ pall
 pall
 # comment
 mod
-pall  
+pall
+push  79
+pchar  

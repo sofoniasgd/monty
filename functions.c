@@ -72,7 +72,7 @@ void pint(stack_t **stack, __attribute__((unused))unsigned int line_number)
 {
 	if (*stack == NULL)
 	{
-		fprintf(stderr, "L%u: cant't pint, stack empty\n", line_number);
+		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	else

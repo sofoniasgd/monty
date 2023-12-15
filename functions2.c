@@ -93,3 +93,29 @@ void divide(stack_t **stack, unsigned int line_number)
 	free(*stack);
 	*stack = tmp;
 }
+/**
+ * mult - multoiplies the top two elements
+ * @stack: stack pointer
+ * @line_number: instruction line number
+ */
+void mult(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp;
+	int i = 0;
+	tmp = *stack;
+	while (i < 2)
+	{
+		if (tmp == NULL)
+		{
+			fprintf(stderr, "L%u: can't mul, stack too short\n", line_number);
+				exit(EXIT_FAILURE);
+		}
+		tmp = tmp->next;
+		i++;
+	}
+	tmp = *stack;
+	tmp = tmp->next;
+	tmp->n *= (*stack)->n;
+	free(*stack);
+	*stack = tmp;
+}

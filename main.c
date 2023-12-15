@@ -49,7 +49,7 @@ int main(int argc, char *argv[], char *envp[])
 		argument = NULL;
 		if (extractopcode(&line, &opcode) == 0)
 			continue;
-		if (*(line + 0) == '#')
+		if (*(opcode) == '#')
 			continue;
 		if (executeopcode(opcode, line_number) == 0)
 		{

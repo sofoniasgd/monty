@@ -34,7 +34,7 @@ int main(int argc, char *argv[], char *envp[])
 	filed = fopen(fpath, "r");
 	if (filed == NULL)
 	{
-		strcat(errmsg, "Error: Can't open ");
+		strcat(errmsg, "Error: Can't open file ");
 		strcat(errmsg, argv[1]);
 		strcat(errmsg, "\n");
 		write(STDERR_FILENO, errmsg, strlen(errmsg));
@@ -53,7 +53,7 @@ int main(int argc, char *argv[], char *envp[])
 			continue;
 		if (executeopcode(opcode, line_number) == 0)
 		{
-			fprintf(stderr, "L%u: unknown instruction %s", line_number, opcode);
+			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
 			break;
 		}
 
@@ -61,6 +61,7 @@ int main(int argc, char *argv[], char *envp[])
 	freefunctions();
 	free(line);
 	fclose(filed);
+	destroystack();
 	return (0);
 }
 

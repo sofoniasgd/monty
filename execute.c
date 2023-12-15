@@ -24,7 +24,24 @@ int executeopcode(char *opcode, unsigned int line_number)
 
 	return (status);
 }
+/**
+ * destroystack - destroys stack
+ * Return: none
+ */
+void destroystack()
+{
+	stack_t *tmp;
 
+	if (stacktop == NULL)
+		return;
+	while (stacktop->next != NULL)
+	{
+		tmp = stacktop->next;
+		free(stacktop);
+		stacktop = tmp;
+	}
+	free(stacktop);
+}
 /**
  * mallocerror - print malloc error
  * Return: none

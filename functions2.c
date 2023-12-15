@@ -24,7 +24,7 @@ void add(stack_t **stack, unsigned int line_number)
 		if (tmp == NULL)
 		{
 			fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
-				exit(EXIT_FAILURE);
+			exit(EXIT_FAILURE);
 		}
 		tmp = tmp->next;
 		i++;
@@ -50,7 +50,7 @@ void sub(stack_t **stack, unsigned int line_number)
 		if (tmp == NULL)
 		{
 			fprintf(stderr, "L%u: can't sub, stack too short\n", line_number);
-				exit(EXIT_FAILURE);
+			exit(EXIT_FAILURE);
 		}
 		tmp = tmp->next;
 		i++;
@@ -76,7 +76,7 @@ void divide(stack_t **stack, unsigned int line_number)
 		if (tmp == NULL)
 		{
 			fprintf(stderr, "L%u: can't div, stack too short\n", line_number);
-				exit(EXIT_FAILURE);
+			exit(EXIT_FAILURE);
 		}
 		tmp = tmp->next;
 		i++;
@@ -108,7 +108,7 @@ void mult(stack_t **stack, unsigned int line_number)
 		if (tmp == NULL)
 		{
 			fprintf(stderr, "L%u: can't mul, stack too short\n", line_number);
-				exit(EXIT_FAILURE);
+			exit(EXIT_FAILURE);
 		}
 		tmp = tmp->next;
 		i++;

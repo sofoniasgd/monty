@@ -49,6 +49,7 @@ int numspace(char *start);
 void opcodesetup();
 void freefunctions();
 void mallocerror();
+void destroystack();
 
 /* opcode functions */
 void push(stack_t **stack, unsigned int line_number);

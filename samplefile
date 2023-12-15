@@ -9,6 +9,9 @@ push     4
 pint
         push 55
 pint
+nop
+swap
+pall
               push 66
            pint        
                    push 77

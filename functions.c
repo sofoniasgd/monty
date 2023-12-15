@@ -88,4 +88,40 @@ void pop(stack_t **stack, __attribute__((unused))unsigned int line_number)
 	free(*stack);
 	*stack = tmp;
 	}
+
+}
+/**
+ * swap - swaps top two elements of stack
+ * @stack: stack pointer
+ * @line_number: instruction line number
+ */
+void swap(stack_t **stack, __attribute__((unused))unsigned int line_number)
+{
+	stack_t *tmp;
+	int i = 0, top;
+	tmp = *stack;
+	while (i < 2)
+	{
+		if (tmp == NULL)
+		{
+			fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
+				exit(EXIT_FAILURE);
+		}
+		tmp = tmp->next;
+		i++;
+	}
+	tmp = *stack;
+	top = tmp->n;
+	tmp = tmp->next;
+	(*stack)->n = tmp->n;
+	tmp->n = top;
+}
+/**
+ * nop - does nothing
+ * @stack: stack pointer
+ * @line_number: instruction line number
+ */
+void nop(__attribute__((unused))stack_t **stack, __attribute__((unused))unsigned int line_number)
+{
+/*nothing*/
 }

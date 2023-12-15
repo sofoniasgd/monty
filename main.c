@@ -53,7 +53,7 @@ int main(int argc, char *argv[], char *envp[])
 			continue;
 		if (executeopcode(opcode, line_number) == 0)
 		{
-			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, strcat(opcode, "\n"));
+			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
 		/*	printf("\n");*/
 			break;
 		}
@@ -85,7 +85,7 @@ while (*(linen + i) != '\0')
 	i++;
 }
 /* second for finding end of opcode */
-*opcode = strtok(linen, delim);
+*opcode = strtok(*line, delim);
 if (*opcode == NULL)
 	status = 0;
 else

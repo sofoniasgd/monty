@@ -105,7 +105,7 @@ void opcodesetup()
 {
 
 	int i = 0, opcodelen = 0;
-	char *opcodes[] = {"push", "pall", "pint", "pop", "swap", "add", "nop", "sub", "div", "mul", "mod", "pchar", NULL};
+	char *opcodes[] = {"push", "pall", "pint", "pop", "swap", "add", "nop", "sub", "div", "mul", "mod", "pchar", "pstr", NULL};
 	/*find length of the opcode list and malloc an instruction_t pointer array*/
 	while (opcodes[opcodelen] != NULL)
 		opcodelen += 1;
@@ -134,6 +134,7 @@ void opcodesetup()
 	functions[9]->f = &mult;
 	functions[10]->f = &mod;
 	functions[11]->f = &pchar;
+	functions[12]->f = &pstr;
 }
 /**
  * freefunctions - frees memory reserved for functions

@@ -50,3 +50,32 @@ void pchar(stack_t **stack, unsigned int line_number)
 	}
 	printf("%c\n", (*stack)->n);
 }
+/**
+ * pstr - print string formed from stack elements
+ * @stack: stack pointer
+ * @line_number: instruction line number
+ */
+void pstr(stack_t **stack, __attribute__((unused))unsigned int line_number)
+{
+	stack_t *current;
+	char string[127];
+	int i = 0;
+	char c;
+
+	if (*stack == NULL)
+		printf("\n");
+	current = *stack;
+	while (current != NULL)
+	{
+		if(current->n <= 0 || current->n >= 128)
+			break;
+		c = current->n;
+		string[i] = c;
+		i++;
+		if (current->next == NULL)
+			current = NULL;
+		else
+			current = current->next;
+	}
+	printf("%s\n", string);
+}

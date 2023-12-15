@@ -53,8 +53,8 @@ int main(int argc, char *argv[], char *envp[])
 			continue;
 		if (executeopcode(opcode, line_number) == 0)
 		{
-			printf("\n");
 			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
+			printf("\n");
 			break;
 		}
 

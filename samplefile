@@ -1,11 +1,9 @@
-      hello       world!          
-    second     line           
-   third   line            
-fourth     line           
+      push       1          
+    push     2           
+   push   3            
+push     4           
 
-        fifth 55
-              sixth 66
-                   seventh 77
-eight                   
-ninth
-tenth
+        push 55
+              push 66
+                   push 77
+pall                   

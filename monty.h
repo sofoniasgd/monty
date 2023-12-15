@@ -41,9 +41,17 @@ typedef struct instruction_s
 /*declare extern stack pointer and argument straing */
 extern stack_t *stacktop;
 extern char *argument;
+extern instruction_t **functions;
 
 int extractopcode(char **line, char **opcode);
-void executeopcode(char *opcode);
+int executeopcode(char *opcode, unsigned int line_number);
 int numspace(char *start);
+void opcodesetup();
+void freefunctions();
+void mallocerror();
+
+/* opcode functions */
+void push(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, __attribute__((unused))unsigned int line_number);
 
 #endif

@@ -1,7 +1,9 @@
 #include "monty.h"
 
-/*define global variable argument*/
-char *argument;
+/*define global variable argument and stack pointer*/
+char *argument = NULL;
+stack_t *stacktop = NULL;
+instruction_t **functions = NULL;
 /* a light weight monty interpreter */
 /**
  * main - entry point
@@ -16,7 +18,7 @@ int main(int argc, char *argv[], char *envp[])
 	size_t n = 0;
 	char *fpath, *line = NULL, *opcode = NULL;
 	char errmsg[256];
-	int line_number = 0;
+	unsigned int line_number = 0;
 
 	(void)envp;
 	/* exit if no or more than one argument then exit if */
@@ -38,23 +40,25 @@ int main(int argc, char *argv[], char *envp[])
 		write(STDERR_FILENO, errmsg, strlen(errmsg));
 		exit(EXIT_FAILURE);
 	}
+	/*opcode functions declaration and initialization setup*/
+	opcodesetup();
 	/* get line from file discriptor */
 	while (getline(&line, &n, filed) != -1)
 	{
 		line_number += 1;
 		argument = NULL;
-		/*write(STDOUT_FILENO, line, strlen(line));*/
 		if (extractopcode(&line, &opcode) == 0)
-		{}
-		printf("||line number=>%i|line=>%s|len=>%li||\n", line_number, line, strlen(line));
-		printf("||opcode-%s|externarg - %s||\n------------------\n", opcode, argument);
-			/*executeopcode(opcode, &argument);*/
-			/*free(opcode);*/
-		if (strlen(line) == 1 || strlen(line) == 0)
 			continue;
-		printf("beforefree\n");
-		free(line);
+		/*printf("||opcode-%s|argument-%s||\n", opcode, argument);*/
+		if (executeopcode(opcode, line_number) == 0)
+		{
+			fprintf(stderr, "L%u: unknown instruction %s", line_number, opcode);
+			break;
+		}
+
 	}
+	freefunctions();
+	free(line);
 	fclose(filed);
 	return (0);
 }
@@ -88,4 +92,47 @@ argumentst = strtok(NULL, delim);
 if (argumentst != NULL)
 	argument = argumentst;
 return (status);
+}
+
+/**
+ * opcodesetup - sets up struct definitions for monty opcodes
+ * Return: none
+ */
+void opcodesetup()
+{
+
+	int i = 0, opcodelen = 0;
+	char *opcodes[] = {"push", "pall", NULL};
+	/*find length of the opcode list and malloc an instruction_t pointer array*/
+	while (opcodes[opcodelen] != NULL)
+		opcodelen += 1;
+	functions = malloc(sizeof(instruction_t) * (opcodelen + 1));
+	if (functions == NULL)
+		mallocerror();
+	/* loop to assign function pointers and opcodes */
+	for (i = 0; i < opcodelen; i++)
+	{
+		functions[i] = malloc(sizeof(instruction_t));
+		if (functions[i] == NULL)
+			mallocerror();
+		functions[i]->opcode = opcodes[i];
+	}
+	functions[i] = NULL;
+
+	functions[0]->f = &push;
+	functions[1]->f = &pall;
+}
+/**
+ * freefunctions - frees memory reserved for functions
+ * Return: none
+ */
+void freefunctions()
+{
+	int  i = 0;
+	while (functions[i] != NULL)
+	{
+		free(functions[i]);
+		i++;
+	}
+	free(functions);
 }

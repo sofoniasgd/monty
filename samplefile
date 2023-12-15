@@ -16,4 +16,6 @@ pall
                    push 77
          pall
  sub
+pall
+div
 pall  

@@ -116,12 +116,3 @@ void swap(stack_t **stack, __attribute__((unused))unsigned int line_number)
 	(*stack)->n = tmp->n;
 	tmp->n = top;
 }
-/**
- * nop - does nothing
- * @stack: stack pointer
- * @line_number: instruction line number
- */
-void nop(__attribute__((unused))stack_t **stack, __attribute__((unused))unsigned int line_number)
-{
-/*nothing*/
-}

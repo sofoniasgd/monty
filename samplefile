@@ -12,6 +12,8 @@ pint
 nop
 swap
 pall
+              add
+pall
               push 66
            pint        
                    push 77

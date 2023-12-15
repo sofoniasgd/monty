@@ -49,7 +49,8 @@ int main(int argc, char *argv[], char *envp[])
 		argument = NULL;
 		if (extractopcode(&line, &opcode) == 0)
 			continue;
-		/*printf("||opcode-%s|argument-%s||\n", opcode, argument);*/
+		if (*(line + 0) == '#')
+			continue;
 		if (executeopcode(opcode, line_number) == 0)
 		{
 			fprintf(stderr, "L%u: unknown instruction %s", line_number, opcode);

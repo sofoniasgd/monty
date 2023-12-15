@@ -9,10 +9,18 @@ void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *element;
 	int stat = 0;
+	if (argument)
+	{
 	/* check for zero input */
 	if (*(argument) == '0' || (*(argument) == '-' && *(argument + 1) == '0'))
-		stat = 1;
-	if (argument == NULL || (atoi(argument) == 0 && stat == 0))
+	{
+		if (atoi(argument) == 0)
+			stat = 1;
+	}
+	else
+		stat = atoi(argument);
+	}
+	if (!argument || stat == 0)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		freefunctions();

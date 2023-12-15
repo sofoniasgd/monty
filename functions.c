@@ -69,3 +69,23 @@ void pint(stack_t **stack, __attribute__((unused))unsigned int line_number)
 	printf("%i\n", (*stack)->n);
 	}
 }
+/**
+ * pop - removes top element of stack
+ * @stack: stack pointer
+ * @line_number: instruction line number
+ */
+void pop(stack_t **stack, __attribute__((unused))unsigned int line_number)
+{
+	stack_t *tmp;
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%u: cant't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+	tmp = (*stack)->next;
+	free(*stack);
+	*stack = tmp;
+	}
+}

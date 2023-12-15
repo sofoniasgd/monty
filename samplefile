@@ -1,4 +1,3 @@
-pint     
  push       1 
 pint         
     push     2           
@@ -13,4 +12,6 @@ pint
               push 66
            pint        
                    push 77
+pint
+pop
 pint  
